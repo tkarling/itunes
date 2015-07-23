@@ -1,36 +1,61 @@
 <!DOCTYPE HTML>
 <html ng-app="itunes">
-  <head>
+
+<head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body ng-controller="mainCtrl">
+</head>
+
+<body ng-controller="mainCtrl">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div id="myContainer">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> DevTunes</a>
-          </div>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" ng-model="artist" placeholder="Artist Name" >
-              <button class="btn btn-primary" ng-click="getSongData()"> Submit </button>
+        <div class="container">
+            <div id="myContainer">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> DevTunes</a>
+                </div>
+                <form class="navbar-form navbar-left" role="search" ng-submit="getSongData()">
+                    <span class="form-group">
+                        <input type="text" class="form-control" ng-model="artist" placeholder="Artist Name">
+                        <button ng-show="false" class="btn btn-primary" ng-click="getSongData()"> Submit </button>
+                    <span>
+                </form>
+                <span class="form-group">
+                    <select class="form-control"  ng-model="kind" ng-change="getSongData()">
+                      <option value="all">All</option>
+                      <option value="song">Song</option>
+                      <option value="musicVideo">Music Video</option>
+                      <option value="movie">Movie</option>
+                      <option value="podcast">Podcast</option>
+                      <option value="tvEpisode">TV Show</option>
+                    </select>
+                </span>
+                <span class="form-group">
+                    <select class="form-control"  ng-model="sortBy" ng-change="updateSortInfo()">
+                      <option value="TrackName">Sort by Track Name</option>
+                      <option value="Artist">Sort by Artist</option>
+                      <option value="Collection">Sort by Collection</option>
+                      <option value="Type">Sort by Media Type</option>
+                    </select>
+                </span>
+
+                <span class="form-group">
+                        <input type="text" class="form-control" ng-model="search" placeholder="search">
+                <span>
             </div>
-          </form>
         </div>
-      </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading"> Your Search Results:</div>
-     <div class="gridStyle" ng-grid="gridOptions" swap-image="defaultInfo.search"></div>
+        <div class="panel-heading"> Your Search Results:</div>
+        <div class="gridStyle" ng-grid="gridOptions" swap-image="defaultInfo.search"></div>
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/mainCtrl.js"></script>
     <script src="js/itunesService.js"></script>
-  </body>
+</body>
+
 </html>
